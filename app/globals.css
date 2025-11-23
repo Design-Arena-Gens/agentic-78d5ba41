@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+  color-scheme: light;
+  --bg-gradient: radial-gradient(circle at top, #f2f6ff 0%, #e1ecff 45%, #cddcf1 100%);
+  --primary: #1c2c4f;
+  --accent: #7c5cff;
+  --sun: #ffcc70;
+  --snow: #eef2ff;
+  --ink: rgba(12, 23, 41, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg-gradient);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+
+body {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.scene-wrapper {
+  width: min(100%, 1080px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 30px 60px rgba(28, 44, 79, 0.25);
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scene-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, #7ca0d6 0%, #6d8fc1 40%, #4f6a94 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.scene-title {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.scene-title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 4vw, 4.25rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.scene-title p {
+  margin: 0;
+  max-width: 28rem;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.canvas-elements {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sun {
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  width: clamp(120px, 18vw, 180px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 30% 30%, #fff7d6 0%, var(--sun) 55%, rgba(255, 153, 0, 0.5) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(255, 204, 112, 0.9);
+  opacity: 0.85;
+}
+
+.mountain-range {
+  position: absolute;
+  inset: auto 0 0;
+  height: 68%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5%;
+  padding: 0 6%;
+}
+
+.mountain {
+  position: relative;
+  flex: 1;
+  max-width: 22vw;
+  aspect-ratio: 1 / 1.1;
+  background: linear-gradient(160deg, rgba(245, 248, 255, 0.95) 0%, rgba(195, 215, 255, 0.9) 55%, rgba(143, 173, 226, 0.7) 100%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: inset 0 -25px 50px rgba(13, 35, 76, 0.18);
+}
+
+.mountain::after {
+  content: '';
+  position: absolute;
+  inset: 28% 18% auto;
+  height: 42%;
+  background: linear-gradient(120deg, rgba(238, 242, 255, 0.95) 0%, rgba(214, 227, 255, 0.8) 45%, rgba(190, 209, 242, 0.35) 100%);
+  clip-path: polygon(10% 0, 85% 0, 75% 80%, 20% 80%);
+  filter: blur(1px);
+}
+
+.mountain--kailash {
+  flex: 1.6;
+  max-width: 28vw;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(225, 234, 255, 0.9) 50%, rgba(142, 168, 214, 0.6) 100%);
+  box-shadow: inset 0 -35px 60px rgba(15, 35, 69, 0.25);
+}
+
+.mountain--kailash::after {
+  inset: 22% 16% auto;
+  height: 48%;
+  clip-path: polygon(12% 0, 88% 0, 72% 78%, 30% 72%, 18% 60%);
+}
+
+.divine-aura {
+  position: absolute;
+  bottom: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(220px, 22vw, 320px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(196, 218, 255, 0.8) 0%, rgba(137, 176, 235, 0.5) 38%, rgba(88, 122, 179, 0.05) 70%);
+  border-radius: 50%;
+  filter: blur(0.5px);
+  box-shadow: 0 0 120px rgba(123, 176, 255, 0.6);
+}
+
+.shiva-silhouette {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-58%);
+  width: clamp(160px, 16vw, 240px);
+  aspect-ratio: 3 / 4.2;
+  background: linear-gradient(180deg, rgba(22, 29, 54, 0.9) 0%, rgba(9, 16, 37, 0.92) 65%, rgba(3, 7, 20, 0.8) 100%);
+  clip-path: polygon(50% 0%, 67% 6%, 75% 18%, 72% 30%, 82% 26%, 92% 34%, 84% 45%, 92% 52%, 88% 66%, 100% 86%, 75% 100%, 10% 100%, 0% 84%, 10% 60%, 12% 46%, 4% 28%, 16% 18%, 26% 28%, 30% 16%, 36% 6%);
+  box-shadow: inset 0 -18px 30px rgba(255, 255, 255, 0.12);
+}
+
+.trident {
+  position: absolute;
+  bottom: 36%;
+  left: 51.5%;
+  width: clamp(14px, 1.4vw, 20px);
+  height: clamp(190px, 18vw, 260px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(152, 191, 255, 0.9) 45%, rgba(61, 99, 156, 0.95) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(208, 230, 255, 0.4);
+}
+
+.trident::before,
+.trident::after {
+  content: '';
+  position: absolute;
+  top: -16%;
+  width: 100%;
+  height: 40%;
+  background: inherit;
+  border-radius: 999px;
+}
+
+.trident::before {
+  left: -130%;
+  transform: rotate(-14deg);
+}
+
+.trident::after {
+  right: -130%;
+  transform: rotate(14deg);
+}
+
+.trident .prong {
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160%;
+  height: clamp(58px, 5vw, 78px);
+  background: inherit;
+  clip-path: polygon(50% 0%, 100% 60%, 78% 68%, 78% 100%, 22% 100%, 22% 68%, 0% 60%);
+}
+
+.pilgrim {
+  position: absolute;
+  bottom: 16%;
+  left: 57%;
+  width: clamp(120px, 12vw, 170px);
+  aspect-ratio: 3 / 4.2;
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(205, 215, 240, 0.95) 55%, rgba(118, 129, 168, 0.85) 100%);
+  clip-path: polygon(50% 2%, 68% 12%, 74% 32%, 70% 48%, 78% 62%, 86% 68%, 82% 82%, 55% 100%, 28% 100%, 18% 84%, 26% 66%, 32% 56%, 30% 38%, 36% 22%);
+  box-shadow: inset 0 -22px 35px rgba(22, 36, 78, 0.35);
+}
+
+.pilgrim::after {
+  content: '';
+  position: absolute;
+  inset: 60% 18% -12% 18%;
+  background: rgba(36, 48, 88, 0.6);
+  clip-path: polygon(12% 10%, 88% 0%, 100% 60%, 76% 100%, 24% 100%, 0% 58%);
+  filter: blur(3px);
+}
+
+.pilgrim-shadow {
+  position: absolute;
+  bottom: 12%;
+  left: 58%;
+  transform: translateX(-40%);
+  width: clamp(220px, 24vw, 320px);
+  height: clamp(60px, 6vw, 90px);
+  background: radial-gradient(circle, rgba(9, 18, 38, 0.35) 0%, rgba(9, 18, 38, 0.0) 65%);
+  filter: blur(6px);
+}
+
+.clouds {
+  position: absolute;
+  top: 18%;
+  left: 12%;
+  width: 70%;
+  height: 24%;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  box-shadow: 0 12px 32px rgba(28, 44, 79, 0.1);
+  filter: blur(0.5px);
+}
+
+.cloud:nth-child(1) {
+  top: 20%;
+  left: 0;
+  width: clamp(180px, 22vw, 260px);
+  height: clamp(60px, 6vw, 80px);
+}
+
+.cloud:nth-child(2) {
+  top: 0;
+  left: 45%;
+  width: clamp(160px, 18vw, 220px);
+  height: clamp(55px, 5.5vw, 72px);
+}
+
+.cloud:nth-child(3) {
+  top: 45%;
+  left: 28%;
+  width: clamp(140px, 16vw, 190px);
+  height: clamp(48px, 5vw, 64px);
+}
+
+.scripture-band {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(12, 21, 38, 0.92) 0%, rgba(22, 42, 76, 0.9) 100%);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: clamp(0.75rem, 1.2vw, 1.25rem) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.scripture-band span {
+  opacity: 0.65;
+}
+
+.caption {
+  padding: clamp(1.5rem, 2.5vw, 2rem) clamp(2rem, 3.5vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+  display: grid;
+  gap: 0.75rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.65) 100%);
+}
+
+.caption h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  color: var(--primary);
+}
+
+.caption p {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.8;
+  color: rgba(28, 44, 79, 0.8);
+}
+
+.caption .signature {
+  margin-top: 0.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: rgba(124, 92, 255, 0.9);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .scene-wrapper {
+    border-radius: 20px;
+  }
+
+  .scene-title h1 {
+    text-align: left;
+  }
+
+  .scene-title p {
+    font-size: 1rem;
+  }
+
+  .scripture-band {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
